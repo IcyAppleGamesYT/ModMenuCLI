@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "axios": "^0.27.2"
+    "adm-zip": "^0.5.9",
+    "axios": "^0.27.2",
+    "nexe": "^4.0.0-rc.1",
+    "superagent": "^8.0.0"
   }
 }
