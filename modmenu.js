@@ -38,6 +38,7 @@ async function main() {
 }
 async function install(number) {
   readline.close();
+  console.log("Getting download link...")
   let url;
   try {
     const { data } = await axios.get(
@@ -52,6 +53,7 @@ async function install(number) {
     const dirpath = path.join(__dirname, "..", "World of Tanks Blitz");
     const downloadpath = path.join(__dirname, "download");
     const zippath = path.join(__dirname, "download", "download.zip");
+    console.log("Downloading mod...")
     request
       .get(`${url}`)
       .on("error", function (error) {
@@ -59,6 +61,7 @@ async function install(number) {
       })
       .pipe(fs.createWriteStream(zippath))
       .on("finish", async function () {
+        console.log("Installing mod...")
         const zip = new admZip(zippath);
         zip.extractAllTo(downloadpath, true);
         fs.unlinkSync(zippath, (err) => {
