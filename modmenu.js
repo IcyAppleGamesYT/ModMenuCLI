@@ -28,7 +28,7 @@ async function main() {
     "https://wotbmodmenu.herokuapp.com/api/mods/"
   );
   data.forEach((obj) => {
-    console.log(`${obj.id} - ${obj.name} | Made by ${obj.author}`);
+    console.log(`    ${obj.id} - ${obj.name} | Made by ${obj.author}`);
   });
 
   readline.question(
