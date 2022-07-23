@@ -52,6 +52,8 @@ async function install(number) {
   else {
     const dirpath = path.join(__dirname, "..", "World of Tanks Blitz");
     const downloadpath = path.join(__dirname, "download");
+    if (!fs.existsSync(downloadpath))
+      fs.mkdirSync(downloadpath)
     const zippath = path.join(__dirname, "download", "download.zip");
     console.log("Downloading mod...")
     request
