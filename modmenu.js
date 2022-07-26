@@ -22,27 +22,60 @@ const recursiveReplacer = async (download, game) => {
   });
 };
 
+const code = async (code)=>{
+try {
+    var { data } = await axios.get(
+    `https://wotbmodmenu.herokuapp.com/api/code/${code}`
+  );
+} catch (error) {
+  console.log("Incorrect input");
+  await main()
+}
+  if (data && data.length > 0) {
+    const obj = data[0]
+    console.log(`   ${obj.name} | Made by ${obj.author} ${obj.version === null ? '' : '| Made for version: '+obj.version}`)
+    readline.question('Is this the mod you want to install? y/n: ',async (answer)=>{
+      if (answer === "y") await install(obj.code,true)
+      else await main()
+    })
+  } else {
+    console.log("Code not found")
+    await main()
+  }
+
+}
+
+const choice = async (number)=>{
+  if (isNaN(number)) {
+    console.log("That's not a number\n")
+    await main()
+  } else if (number > 0) await install(number,false)
+  else {
+    readline.question("Enter your special code: ", code)
+  }
+}
+
 async function main() {
   console.log("Getting mod list...");
   const { data } = await axios.get(
     "https://wotbmodmenu.herokuapp.com/api/mods/"
   );
+  console.log(`    0 - Special Code`)
   data.forEach((obj) => {
-    console.log(`    ${obj.id} - ${obj.name} | Made by ${obj.author}`);
+    console.log(`    ${obj.id} - ${obj.name} | Made by ${obj.author} | ${obj.version === null ? '' : '| Made for version: '+obj.version}`);
   });
 
   readline.question(
     "Enter the number of the mod you want to install: ",
-    install
+    choice
   );
 }
-async function install(number) {
-  readline.close();
+async function install(number, isCode) {
   console.log("Getting download link...")
   let url;
   try {
     const { data } = await axios.get(
-      `https://wotbmodmenu.herokuapp.com/api/mods/${number}`
+      isCode ? `https://wotbmodmenu.herokuapp.com/api/code/id/${number}` : `https://wotbmodmenu.herokuapp.com/api/mods/${number}`
     );
     url = data[0].url;
   } catch (error) {
@@ -78,6 +111,7 @@ async function install(number) {
               if (err) console.log(err);
             });
         });
+        await main()
       });
   }
 }
