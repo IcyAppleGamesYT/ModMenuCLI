@@ -28,13 +28,12 @@ try {
     `https://wotbmodmenu.herokuapp.com/api/code/${code}`
   );
 } catch (error) {
-  console.log("Incorrect input");
-  await main()
+  
 }
   if (data && data.length > 0) {
     const obj = data[0]
-    console.log(`   ${obj.name} | Made by ${obj.author} ${obj.version === null ? '' : '| Made for version: '+obj.version}`)
-    readline.question('Is this the mod you want to install? y/n: ',async (answer)=>{
+    console.log(`\n   ${obj.name} | Made by ${obj.author} ${obj.version === null ? '' : '| Made for version: '+obj.version}`)
+    readline.question('\nIs this the mod you want to install? y/n: ',async (answer)=>{
       if (answer === "y") await install(obj.code,true)
       else await main()
     })
@@ -111,6 +110,7 @@ async function install(number, isCode) {
               if (err) console.log(err);
             });
         });
+        console.log("Finished installing!")
         await main()
       });
   }
