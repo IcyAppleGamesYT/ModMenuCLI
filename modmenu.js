@@ -9,7 +9,16 @@ const admZip = require("adm-zip");
 const path = require("path");
 
 const recursiveReplacer = async (download, game) => {
-  fs.readdirSync(download).forEach((file) => {
+  const list = fs.readdirSync(download)
+  if (list.includes("script.js")) {
+    try {
+      const {main} = require('./download/script.js')
+      await main(download,game)
+    } catch (error) {
+      console.log(error)
+    }
+  } else {
+  list.forEach((file) => {
     const newpath = path.join(download, file);
     const gamepath = path.join(game, file);
     if (file.substring(file.lastIndexOf(".")) !== ".zip") {
@@ -20,6 +29,7 @@ const recursiveReplacer = async (download, game) => {
       }
     }
   });
+}
 };
 
 const code = async (code) => {
