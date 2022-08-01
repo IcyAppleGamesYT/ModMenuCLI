@@ -64,6 +64,7 @@ const choice = async (number) => {
     await main();
   } else if (number > 0) await install(number, false);
   else {
+    console.log("Don't bother guessing codes, the chance of guessing one is so much smaller than getting a tank from a crate.\n")
     readline.question("Enter your special code: ", code);
   }
 };
@@ -76,12 +77,14 @@ async function main() {
   console.log(`    0 - Special Code`);
   data.forEach((obj) => {
     console.log(
-      `    ${obj.id} - ${obj.name} | Made by ${obj.author} | ${
+      `    ${obj.id} - ${obj.name} | Made by ${obj.author} ${
         obj.version === null ? "" : "| Made for version: " + obj.version
       }`
     );
   });
-
+  console.log("To see updates regarding mods or the menu itself and to contact the creators of the mods, join the server: https://discord.gg/YAjUgVX")
+  console.log("If a version of WoTB is specified with a mod and it's outdated, it will most likely cause game crashes. Contact the creator to request an updated version.")
+  console.log("If you encounter any issues with a mod, contact the creator. If you encounter any issues with the modmenu itself, contact Blitzhax.")
   readline.question(
     "Enter the number of the mod you want to install: ",
     choice
@@ -114,7 +117,7 @@ async function install(number, isCode) {
       request
         .get(`${url}`)
         .on("error", function (error) {
-          console.log(error);
+          console.log("Couldn't download file");
         })
         .pipe(fs.createWriteStream(zippath))
         .on("finish", async function () {
@@ -140,7 +143,7 @@ async function install(number, isCode) {
           await main();
         });
     } catch (err) {
-      console.log(err);
+      console.log("Something went wrong");
       await main();
     }
   }
