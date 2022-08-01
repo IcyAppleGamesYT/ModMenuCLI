@@ -6,6 +6,7 @@ Step 2: Find your Steam installation folder. By default, this path should be som
 
 Step 3: Extract the zip file to that folder, called "common". 
 ![folder](https://user-images.githubusercontent.com/99101540/180832836-2da3ed2f-1dd7-4375-93b0-9a0ce5dd526e.png)
+
 The folder should show like on the picture between your games.
 
 Step 4: Once inside the modmenu folder, install NodeJS by running the file called "node-v16.16.0-x64" or "node-v16.16.0-x64.msi" depending on your pc settings. Go through the whole installation process.
