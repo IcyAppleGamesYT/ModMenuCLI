@@ -1,15 +1,15 @@
-# How to install
+# How to install for Steam on Windows.
 
 Step 1: On this GitHub page, click the green "Code" button. There you will have the option to download as zip.
 
-Step 2: Find your Steam installation folder. By default, this path should be something like "C:\Program Files (x86)\Steam\steamapps\common".
+Step 2: Find your Documents folder. If you don't see it immediately, check "This PC". In Documents, there should be a folder called "packs". If not, it may be somewhere else. In that case you'll have to find it.
 
-Step 3: Extract the zip file to that folder, called "common". 
-![folder](https://user-images.githubusercontent.com/99101540/180832836-2da3ed2f-1dd7-4375-93b0-9a0ce5dd526e.png)
+Step 3: Extract the zip file to Documents. (Or the folder where "packs" is if not in Documents) 
+![Untitled](https://user-images.githubusercontent.com/99101540/182454645-5e94b8c2-aa60-4174-a9dd-e458e9d72743.png)
 
-The folder should show like on the picture between your games.
+The folder should show like on the picture.
 
-Step 4: Once inside the modmenu folder, install NodeJS by running the file called "node-v16.16.0-x64" or "node-v16.16.0-x64.msi" depending on your pc settings. Go through the whole installation process.
+Step 4: Once inside the modmenu folder, install NodeJS by running the file called "node-v16.16.0-x64" or "node-v16.16.0-x64.msi" depending on your pc settings. (Unless you already have it). Go through the whole installation process.
 You can't use the modmenu without this.
 
 Step 5: Once NodeJS is installed, run the file called "install" or "install.bat" to install the necessary dependancies.
