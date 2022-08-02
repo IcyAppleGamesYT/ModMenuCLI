@@ -83,7 +83,7 @@ async function main() {
       }`
     );
   });
-  console.log("To see updates regarding mods or the menu itself and to contact the creators of the mods, join the server: https://discord.gg/YAjUgVX")
+  console.log("To see updates regarding mods or the menu itself and to contact the creators of the mods, join the server:\nhttps://discord.gg/YAjUgVX")
   console.log("If a version of WoTB is specified with a mod and it's outdated, it will most likely cause game crashes.")
   console.log("If you encounter any issues with a mod or the modmenu itself, contact Blitzhax.")
   readline.question(
@@ -112,7 +112,7 @@ async function install(number, isCode) {
     }
     const downloadpath = path.join(__dirname, "download");
     try {
-      if (!fs.existsSync(downloadpath)) fs.mkdir(downloadpath);
+      if (!fs.existsSync(downloadpath)) fs.mkdirSync(downloadpath);
       const zippath = path.join(__dirname, "download", "download.zip");
       console.log("Downloading mod...");
       request
