@@ -25,6 +25,7 @@ const recursiveReplacer = async (download, game) => {
       if (!fs.lstatSync(newpath).isDirectory()) {
         fs.copyFileSync(newpath, gamepath);
       } else {
+        if (!fs.existsSync(gamepath)) fs.mkdirSync(gamepath)
         recursiveReplacer(newpath, gamepath);
       }
     }
@@ -83,8 +84,8 @@ async function main() {
     );
   });
   console.log("To see updates regarding mods or the menu itself and to contact the creators of the mods, join the server: https://discord.gg/YAjUgVX")
-  console.log("If a version of WoTB is specified with a mod and it's outdated, it will most likely cause game crashes. Contact the creator to request an updated version.")
-  console.log("If you encounter any issues with a mod, contact the creator. If you encounter any issues with the modmenu itself, contact Blitzhax.")
+  console.log("If a version of WoTB is specified with a mod and it's outdated, it will most likely cause game crashes.")
+  console.log("If you encounter any issues with a mod or the modmenu itself, contact Blitzhax.")
   readline.question(
     "Enter the number of the mod you want to install: ",
     choice
@@ -101,13 +102,13 @@ async function install(number, isCode) {
     );
     url = data[0].url;
   } catch (error) {
-    console.log("Incorrect input");
+    console.log("Incorrect input"); 
   }
   if (!url) main();
   else {
-    let dirpath = path.join(__dirname, "..", "World of Tanks Blitz");
+    let dirpath = path.join(__dirname, "..", "packs");
     if (!fs.existsSync(dirpath)) {
-      dirpath = path.join(__dirname,'..','..',"World of Tanks Blitz")
+      dirpath = path.join(__dirname,'..','..',"packs")
     }
     const downloadpath = path.join(__dirname, "download");
     try {
