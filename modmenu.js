@@ -98,8 +98,14 @@ const choice = async (number) => {
     readline.question("Enter your special code: ", code);
   }
 };
-
+let first = true
 async function main() {
+  if (first) {
+    console.log("To see updates regarding mods or the menu itself and to contact the creators of the mods, join the server:\nhttps://discord.gg/YAjUgVX")
+  console.log("If a version of WoTB is specified with a mod and it's outdated, it will most likely cause game crashes.")
+  console.log("If you encounter any issues with a mod or the modmenu itself, contact Blitzhax.")
+  first = false
+  }
   console.log("Getting mod list...");
   const { data } = await axios.get(
     "https://wotbmodmenu.herokuapp.com/api/mods/"
@@ -112,9 +118,6 @@ async function main() {
       }`
     );
   });
-  console.log("To see updates regarding mods or the menu itself and to contact the creators of the mods, join the server:\nhttps://discord.gg/YAjUgVX")
-  console.log("If a version of WoTB is specified with a mod and it's outdated, it will most likely cause game crashes.")
-  console.log("If you encounter any issues with a mod or the modmenu itself, contact Blitzhax.")
   readline.question(
     "Enter the number of the option you want: ",
     choice
