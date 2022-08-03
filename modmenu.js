@@ -59,8 +59,16 @@ const recursiveReplacer = async (download, game) => {
 };
 
 const code = async (code) => {
-  if (code === "reset") await reset(false)
-  else if (code === "hardreset") await reset(true)
+  if (code === "reset") {
+    await reset(false)
+    console.log("backup was applied")
+    await main()
+  } 
+  else if (code === "hardreset") {
+    await reset(true)
+    console.log("backup erased and WoTB reset")
+    await main()
+  } 
   else {
     try {
       var { data } = await axios.get(
