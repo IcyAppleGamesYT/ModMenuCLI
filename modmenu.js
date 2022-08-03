@@ -28,8 +28,8 @@ async function checkBackup(dirpath) {
 }
 async function reset(isHard) {
   console.log("Resetting WoTB...")
-  fs.rmdirSync(dirpath,{ recursive: true, force: true })
-  if (isHard) fs.rmdirSync(backup,{ recursive: true, force: true })
+  fs.rmSync(dirpath,{ recursive: true, force: true })
+  if (isHard) fs.rmSync(backup,{ recursive: true, force: true })
   else if (fs.existsSync(backup)) fse.copySync(backup,dirpath,{overwrite: true})
 }
 
@@ -170,7 +170,7 @@ async function install(number, isCode) {
             if (file.substring(file.lastIndexOf(".")) !== ".zip") {
               const delpath = path.join(downloadpath, file);
               if (fs.lstatSync(delpath).isDirectory())
-                fs.rmdirSync(delpath, { recursive: true, force: true });
+                fs.rmSync(delpath, { recursive: true, force: true });
               else
                 fs.unlink(path.join(downloadpath, file), (err) => {
                   if (err) console.log(err);
