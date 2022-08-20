@@ -1,2 +1,3 @@
 color a
-node modmenu.js
+node updater.js
+pause
